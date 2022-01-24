@@ -16311,7 +16311,7 @@ time, template, isUTC, lang) {
   var dayOfWeekAbbr = timeModel.get('dayOfWeekAbbr');
   return (template || '').replace(/{yyyy}/g, y + '').replace(/{yy}/g, y % 100 + '').replace(/{Q}/g, q + '').replace(/{MMMM}/g, month[M - 1]).replace(/{MMM}/g, monthAbbr[M - 1]).replace(/{MM}/g, pad(M, 2)).replace(/{M}/g, M + '').replace(/{dd}/g, pad(d, 2)).replace(/{d}/g, d + '').replace(/{eeee}/g, dayOfWeek[e]).replace(/{ee}/g, dayOfWeekAbbr[e]).replace(/{e}/g, e + '').replace(/{HH}/g, pad(H, 2)).replace(/{H}/g, H + '').replace(/{hh}/g, pad(h + '', 2)).replace(/{h}/g, h + '').replace(/{mm}/g, pad(m, 2)).replace(/{m}/g, m + '').replace(/{ss}/g, pad(s, 2)).replace(/{s}/g, s + '').replace(/{SSS}/g, pad(S, 3)).replace(/{S}/g, S + '');
 }
-function leveledFormat(tick, idx, formatter, lang, isUTC) {
+function leveledFormat(tick, idx, formatter, lang, isUTC, ticks) {
   var template = null;
 
   if (typeof formatter === 'string') {
@@ -16321,7 +16321,7 @@ function leveledFormat(tick, idx, formatter, lang, isUTC) {
     // Callback formatter
     template = formatter(tick.value, idx, {
       level: tick.level
-    });
+    }, ticks);
   } else {
     var defaults$1 = extend({}, defaultLeveledFormatter);
 
@@ -36032,7 +36032,7 @@ function (_super) {
   TimeScale.prototype.getFormattedLabel = function (tick, idx, labelFormatter) {
     var isUTC = this.getSetting('useUTC');
     var lang = this.getSetting('locale');
-    return leveledFormat(tick, idx, labelFormatter, lang, isUTC);
+    return leveledFormat(tick, idx, labelFormatter, lang, isUTC, this.getTicks());
   };
   /**
    * @override
@@ -37117,7 +37117,7 @@ function makeLabelFormatter(axis) {
 
         return cb(getAxisRawValue(axis, tick), idx, tick.level != null ? {
           level: tick.level
-        } : null, axis);
+        } : null, axis.scale.getTicks());
       };
     }(labelFormatter);
   } else {

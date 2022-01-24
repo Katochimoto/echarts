@@ -139,7 +139,7 @@ class TimeScale extends IntervalScale<TimeScaleSetting> {
     ): string {
         const isUTC = this.getSetting('useUTC');
         const lang = this.getSetting('locale');
-        return leveledFormat(tick, idx, labelFormatter, lang, isUTC);
+        return leveledFormat(tick, idx, labelFormatter, lang, isUTC, this.getTicks());
     }
 
     /**

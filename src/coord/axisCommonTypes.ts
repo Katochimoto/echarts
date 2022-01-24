@@ -20,9 +20,9 @@
 import {
     TextCommonOption, LineStyleOption, OrdinalRawValue, ZRColor,
     AreaStyleOption, ComponentOption, ColorString,
-    AnimationOptionMixin, Dictionary, ScaleDataValue
+    AnimationOptionMixin, Dictionary, ScaleDataValue,
+    TimeScaleTick
 } from '../util/types';
-import type Axis from './Axis';
 
 
 export const AXIS_TYPES = {value: 1, category: 1, time: 1, log: 1} as const;
@@ -159,7 +159,7 @@ export type AxisLabelFormatterOption = string | ((value: OrdinalRawValue | numbe
 type TimeAxisLabelUnitFormatter = AxisLabelFormatterOption | string[];
 
 export type TimeAxisLabelFormatterOption = string
-    | ((value: number, index: number, extra: {level: number}, axis?: Axis) => string)
+    | ((value: number, index: number, extra: {level: number}, ticks?: TimeScaleTick[]) => string)
     | {
         year?: TimeAxisLabelUnitFormatter,
         month?: TimeAxisLabelUnitFormatter,

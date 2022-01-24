@@ -161,7 +161,8 @@ export function leveledFormat(
     idx: number,
     formatter: TimeAxisLabelFormatterOption,
     lang: string | Model<LocaleOption>,
-    isUTC: boolean
+    isUTC: boolean,
+    ticks?: TimeScaleTick[]
 ) {
     let template = null;
     if (typeof formatter === 'string') {
@@ -172,7 +173,7 @@ export function leveledFormat(
         // Callback formatter
         template = formatter(tick.value, idx, {
             level: tick.level
-        });
+        }, ticks);
     }
     else {
         const defaults = zrUtil.extend({}, defaultLeveledFormatter);

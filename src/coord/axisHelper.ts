@@ -261,7 +261,7 @@ export function makeLabelFormatter(axis: Axis): (tick: ScaleTick, idx?: number) 
                     (tick as TimeScaleTick).level != null ? {
                         level: (tick as TimeScaleTick).level
                     } : null,
-                    axis
+                    axis.scale.getTicks()
                 );
             };
         })(labelFormatter);
