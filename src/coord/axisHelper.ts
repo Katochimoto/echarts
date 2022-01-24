@@ -260,7 +260,8 @@ export function makeLabelFormatter(axis: Axis): (tick: ScaleTick, idx?: number) 
                     idx,
                     (tick as TimeScaleTick).level != null ? {
                         level: (tick as TimeScaleTick).level
-                    } : null
+                    } : null,
+                    axis
                 );
             };
         })(labelFormatter);

@@ -36812,7 +36812,7 @@
 
             return cb(getAxisRawValue(axis, tick), idx, tick.level != null ? {
               level: tick.level
-            } : null);
+            } : null, axis);
           };
         }(labelFormatter);
       } else {
