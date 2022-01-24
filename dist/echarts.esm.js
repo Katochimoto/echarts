@@ -72925,7 +72925,7 @@ function getValueLabel(value, axis, ecModel, seriesDataIndices, opt) {
     if (isString(formatter)) {
       text = formatter.replace('{value}', text);
     } else if (isFunction(formatter)) {
-      text = formatter(params_1);
+      text = formatter(params_1, axis.scale.getTicks());
     }
   }
 

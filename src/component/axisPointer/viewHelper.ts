@@ -184,7 +184,7 @@ export function getValueLabel(
             text = formatter.replace('{value}', text);
         }
         else if (zrUtil.isFunction(formatter)) {
-            text = formatter(params);
+            text = formatter(params, axis.scale.getTicks());
         }
     }
 

@@ -1422,7 +1422,7 @@ export interface CommonAxisPointerOption {
         /**
          * String template include variable {value} or callback function
          */
-        formatter?: string | ((params: LabelFormatterParams) => string)
+        formatter?: string | ((params: LabelFormatterParams, ticks?: TimeScaleTick[]) => string)
     }
     animation?: boolean | 'auto'
     animationDurationUpdate?: number
